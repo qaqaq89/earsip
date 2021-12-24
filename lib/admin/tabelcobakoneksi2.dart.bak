@@ -1,0 +1,72 @@
+import 'dart:convert';
+
+// import 'package:earsip2/admin/cobakoneksi2.dart';
+
+Arsipp arsipsFromJson(String str) => Arsipp.fromJson(json.decode(str));
+
+String arsipsToJson(Arsipp data) => json.encode(data.toJson());
+
+class Arsipp {
+    int id;
+    String nama;
+    String foto;
+    List<Datum> data;
+
+    Arsipp({
+        this.id,
+        this.nama,
+        this.foto,
+        this.data,
+    });
+
+    factory Arsipp.fromJson(Map<String, dynamic> json) => Arsipp(
+        id: json["id"],
+        nama: json["nama"],
+        foto: json["foto"],
+        data: List<Datum>.from(json["data"].map((x)=> Datum.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "nama": nama,
+        "foto": foto,
+        "data": List<dynamic>.from(data.map((x) => x.toJson)),
+    };
+}
+
+
+class Datum {
+    int id;
+    String nama;
+    String foto;
+
+    Datum({
+        this.id,
+        this.nama,
+        this.foto,
+    });
+
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+      id: json["id"],
+      nama: json["nama"],
+      foto: json["foto"],
+    );
+
+    Map<String, dynamic> toJson()=> {
+      "id": id,
+      "nama": nama,
+      "foto": foto,
+    };
+}
+
+// class Cobakoneksitabel{
+//   int id;
+//   String nama;
+//   String foto;
+
+//   Cobakoneksitabel({
+//     this.id,
+//     this.nama,
+//     this.foto,
+//   });
+// }

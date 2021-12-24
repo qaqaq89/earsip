@@ -1,0 +1,198 @@
+import 'package:flutter/material.dart';
+import 'cobakoneksi2.dart';
+import 'cobakoneksi2service.dart';
+import 'cobakoneksi_form.dart.bak' as form;
+
+
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  BuildContext context;
+  ApiService apiService;
+
+  @override
+  void initState() {
+    super.initState();
+    apiService = ApiService();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    this.context = context;
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.blue[900],
+        title: new IconButton(icon: Icon(Icons.add), onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return form.FormAddScreen();
+                    }));
+        })
+      ),
+      
+      body: new FutureBuilder(
+        
+        future: apiService.getArsip(),
+        builder: (BuildContext context, AsyncSnapshot<List<Arsip>> snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                  "Something wrong with message: ${snapshot.error.toString()}"),
+            );
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            List<Arsip> arsips = snapshot.data;
+            return _buildListView(arsips);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+              
+            );
+          }
+        },
+      ),
+      
+    );
+    
+  }
+
+  Widget _buildListView(List<Arsip> arsips) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          Arsip arsip = arsips[index];
+          return Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      arsip.nama,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+
+                    Text(
+                      arsip.batch,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    Text(
+                      arsip.nim.toString(),
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    Text(
+                      arsip.prodi,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    Text(
+                      arsip.upbjj,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    Text(
+                      arsip.yudisium.toString(),
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    Text(
+                      arsip.kirim,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    // Text(arsip.foto),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            
+                            showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text("Warning"),
+                                content: Text(
+                                    "Are you sure want to delete data profile ${arsip.nama}?"),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: Text("Yes"),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      apiService
+                                          .deleteArsip(arsip.id)
+                                          .then((isSuccess) {
+                                        if (isSuccess) {
+                                          setState(() {});
+                                          Scaffold.of(this.context)
+                                              .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                      "Delete data success")));
+                                        } else {
+                                          Scaffold.of(this.context)
+                                              .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                      "Delete data failed")));
+                                        }
+                                      });
+                                    },
+                                  ),
+                                  FlatButton(
+                                    child: Text("No"),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              );
+                            });
+
+                          },
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: ()async{
+                            var result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return form.FormAddScreen(arsip: arsip);
+                            }));
+                            if (result != null) {
+                              setState(() {});
+                            }
+                          },
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                    
+                  ],
+                ),
+                
+              ),
+              
+            ),
+            
+            
+            
+          );
+          
+          
+        },
+        itemCount: arsips.length,
+      ),
+      
+      
+    );
+    
+  }
+}

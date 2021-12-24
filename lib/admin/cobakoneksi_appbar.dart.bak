@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'cobakoneksi.dart' as cobaaa;
+import 'cobakoneksi2.dart';
+import 'cobakoneksi2service.dart';
+
+class appbar extends StatefulWidget {
+
+  
+  @override
+  _appbarState createState() => _appbarState();
+}
+
+class _appbarState extends State<appbar> {
+  
+
+  @override
+  Widget build(BuildContext context) {
+
+    
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.blue[900],
+        title: new Text(
+          "About"
+        ),
+      ),
+      body: new SafeArea(
+        child: FutureBuilder(
+        
+        future: apiService.getArsip(),
+        builder: (BuildContext context, AsyncSnapshot<List<Arsip>> snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                  "Something wrong with message: ${snapshot.error.toString()}"),
+            );
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            List<Arsip> arsips = snapshot.data;
+            return _buildListView(arsips);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+              
+            );
+          }
+        },
+      ),
+      ),
+      Widget _buildListView(List<Arsip> arsips) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          Arsip arsip = arsips[index];
+          return Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      arsip.nama,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    Text(arsip.foto),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            // TODO: do something in here
+
+                          },
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: () {
+                            // TODO: do something in here
+                          },
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                    IconButton(icon: Icon(Icons.ac_unit), 
+                    onPressed: (){})
+                  ],
+                ),
+                
+              ),
+              
+            ),
+            
+            
+            
+          );
+          
+          
+        },
+        itemCount: arsips.length,
+      ),
+      
+      
+    );
+    
+  }
+    );
+  }
+}

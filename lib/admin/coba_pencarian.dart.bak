@@ -1,0 +1,226 @@
+import 'package:flutter/material.dart';
+import 'adm_dai_data.dart.bak';
+import 'package:google_fonts/google_fonts.dart';
+
+class Dai extends StatefulWidget {
+
+  Dai() : super();
+
+  @override
+  _DaiState createState() => _DaiState();
+}
+
+class _DaiState extends State<Dai> {
+  List<UserDai> users;
+  @override
+  void initState(){
+    users = UserDai.getUser();
+    super.initState();
+  }
+  DataTable dataBody(){
+    return DataTable(
+      columns: [
+        DataColumn(
+          label: new Text("No."),
+          numeric: false,
+          tooltip: "No.",
+        ),
+        // DataColumn(
+        //   label: new Text("NIM"),
+        //   numeric: false,
+        //   tooltip: "NIM",
+        // ),
+        // DataColumn(
+        //   label: new Text("Nama"),
+        //   numeric: false,
+        //   tooltip: "Nama",
+        // ),
+        // DataColumn(
+        //   label: new Text("Batch"),
+        //   numeric: false,
+        //   tooltip: "Batch",
+        // ),
+        // DataColumn(
+        //   label: new Text("Prodi"),
+        //   numeric: false,
+        //   tooltip: "Prodi",
+        // ),
+        // DataColumn(
+        //   label: new Text("UPBJJ-UT"),
+        //   numeric: false,
+        //   tooltip: "UPBJJ-UT",
+        // ),
+        // DataColumn(
+        //   label: new Text("Yudisium"),
+        //   numeric: false,
+        //   tooltip: "Yudisium",
+        // ),
+        // DataColumn(
+        //   label: new Text("Kelengkapan"),
+        //   numeric: false,
+        //   tooltip: "Kelengkapan",
+        // ),
+        // DataColumn(
+        //   label: new Text("Foto"),
+        //   numeric: false,
+        //   tooltip: "Foto",
+        // ),
+        // DataColumn(
+        //   label: new Text("Tanggal Kirim"),
+        //   numeric: false,
+        //   tooltip: "Tanggal Kirim",
+        // ),
+      ], 
+      rows: users.map((userdai) => DataRow(
+        cells: [
+          DataCell(
+            new Text(userdai.no),
+          ),
+          // DataCell(
+          //   new Text(userdai.nim)
+          // ),
+          // DataCell(
+          //   new Text(userdai.nama)
+          // ),
+          // DataCell(
+          //   new Text(userdai.batch)
+          // ),
+          // DataCell(
+          //   new Text(userdai.prodi)
+          // ),
+          // DataCell(
+          //   new Text(userdai.upbjj)
+          // ),
+          // DataCell(
+          //   new Text(userdai.yudisium)
+          // ),
+          // DataCell(
+          //   new Text(userdai.kelengkapan)
+          // ),
+          // DataCell(
+          //   new Text(userdai.foto)
+          // ),
+          // DataCell(
+          //   new Text(userdai.tglkirim)
+          // ),
+        ]
+        )
+      ).toList()
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.grey,
+        title: new Container(
+          child: Row(
+            children: <Widget>[
+              new Container(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Image.asset("img/UTpng.png",
+                  width: 60.0,
+                  height: 60.0,
+                  ),
+                ),
+              ),
+              new Text("Daftar Arsip Ijazah",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontStyle: FontStyle.italic,
+                color: Colors.blue[900],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          new SafeArea(
+            child: new Column(
+              children: <Widget>[
+                new Container(
+                  padding: new EdgeInsets.all(10.0),
+                  child: new Column(
+                    children: <Widget>[
+                      new Text(
+                        "Daftar Arsip Ijazah Mahasiswa",
+                        style: GoogleFonts.pacifico(
+                          fontSize: 20.0,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      new Padding(
+                        padding: new EdgeInsets.only(
+                          top: 20.0
+                        ),
+                      ),
+                      new TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          labelText: "Search",
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(20.0),
+                          )
+                        ),
+                      ),
+                      new Padding(
+                        padding: new EdgeInsets.only(
+                          top: 5.0
+                        ),
+                      ),
+                      new Column(
+                        children: <Widget>[
+                          new Padding(
+                            padding: new EdgeInsets.all(0.0),
+                            child: new ListView(
+                              shrinkWrap: true,
+                              children: <Widget>[
+                                new MaterialButton(
+                                  color: Colors.grey[300],
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                  onPressed: (){
+                                    // Navigator.push(context, MaterialPageRoute(builder: (context){
+                                    //   return tabaks.Ata();
+                                    // }));
+                                  },
+                                  child: new Row(
+                                    children: <Widget>[
+                                      new Container(
+                                        padding: const EdgeInsets.only(top: 5, bottom: 5, left: 145, right: 75),
+                                        alignment: Alignment.bottomCenter,
+                                        child: new Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text('Search', style: null, textAlign: TextAlign.center),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: dataBody(),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

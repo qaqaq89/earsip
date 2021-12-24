@@ -1,0 +1,136 @@
+class User{
+  String no;
+  String nim;
+  String nama;
+  String upbjj;
+  String kelengkapan;
+  String status;
+
+  User(
+    {
+      this.no, 
+      this.nim,
+      this.nama, 
+      this.upbjj, 
+      this.kelengkapan, 
+      this.status
+    }
+  );
+
+  static List<User> getUser(){
+    return <User>[
+      User(
+        no: "1",
+        nim: "11122201111112",
+        nama: "Yuni",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "2",
+        nim: "11122201111112",
+        nama: "Yanti",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+      User(
+        no: "3",
+        nim: "11122201111112",
+        nama: "Yunita",
+        upbjj: "Surabaya",
+        kelengkapan: "Belum Ada Foto",
+        status: "UT Pusat"
+      ),
+    ];
+  }
+}

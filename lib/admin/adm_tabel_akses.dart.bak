@@ -1,0 +1,170 @@
+import 'package:flutter/material.dart';
+import 'adm_tabel_akses_data.dart.bak';
+import 'package:google_fonts/google_fonts.dart';
+import 'adm_inpt_akses.dart.bak' as akses;
+
+class Ata extends StatefulWidget{
+
+  Ata() : super();
+
+  @override
+  _AtaState createState() => _AtaState();
+}
+
+class _AtaState extends State<Ata>{
+  List<Useradmin> users;
+  @override
+  void initState(){
+    users = Useradmin.getUser();
+    super.initState();
+  }
+  DataTable dataBody(){
+    return DataTable(
+      columns: [
+        DataColumn(
+          label: new Text("No."),
+          numeric: false,
+          tooltip: "No."
+        ),
+        DataColumn(
+          label: new Text("UPBJJ-UT"),
+          numeric: false,
+          tooltip: "UPBJJ-UT"
+        ),
+        DataColumn(
+          label: new Text("Username"),
+          numeric: false,
+          tooltip: "Username"
+        ),
+        DataColumn(
+          label: new Text("Password"),
+          numeric: false,
+          tooltip: "Password"
+        ),
+        DataColumn(
+          label: new Text("Status"),
+          numeric: false,
+          tooltip: "Status"
+        ),
+      ],
+      rows: users.map((user) => DataRow(
+        cells: [
+          DataCell(
+            new Text(user.no),
+          ),
+          DataCell(
+            new Text(user.upbjj),
+          ),
+          DataCell(
+            new Text(user.username),
+          ),
+          DataCell(
+            new Text(user.password),
+          ),
+          DataCell(
+            new Text(user.status),
+          ),
+         ]
+        )
+      ).toList(),
+    );
+  }
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.grey,
+        title: new Container(
+          child: Row(
+            children: <Widget>[
+              new Container(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Image.asset("img/UTpng.png",
+                  width: 60.0,
+                  height: 60.0,
+                  ),
+                ),
+              ),
+              new Text("Akses UPBJJ-UT",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontStyle: FontStyle.italic,
+                color: Colors.blue[900],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+  
+      body: ListView(
+        children: <Widget>[
+          new Container(
+            padding: new EdgeInsets.all(10.0),
+            child: new Column(
+              children: <Widget>[
+                new Text(
+                  "Hak Akses UPBJJ-UT",
+                  style: GoogleFonts.pacifico(
+                    fontSize: 20.0,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(
+                    top: 20.0
+                  )
+                ),
+                new Column(
+                  children: <Widget>[
+                    new Padding(
+                      padding: new EdgeInsets.all(0.0),
+                      child: new ListView(
+                        shrinkWrap: true,
+                        children: <Widget>[
+                          new MaterialButton(
+                            color: Colors.grey[300],
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return akses.InputAkses();
+                              }));
+                            },
+                            child: new Row(
+                              children: <Widget>[
+                                new Container(
+                                  padding: const EdgeInsets.only(top: 5, bottom: 5, left: 85, right: 75),
+                                  alignment: Alignment.bottomCenter,
+                                  child: new Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text('Tambah Akses UPBJJ - UT', style: null, textAlign: TextAlign.center),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]
+                      ),
+                    ),
+                  ],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: dataBody(),
+                ),
+                // new Center(
+                //   child: dataBody(),
+                // )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

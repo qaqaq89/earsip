@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+import '../user/cobagrafik.dart' as gbaf;
+import '../user/cobagrafik_adafoto.dart' as gaf;
+
+void main(){
+  runApp(new MaterialApp(
+    title: "Footer Grafik",
+    home: new Navigasigrafik(),
+  ));
+}
+
+class Navigasigrafik extends StatefulWidget{
+  @override
+  _NavigasigrafikState createState() => new _NavigasigrafikState();
+}
+
+class _NavigasigrafikState extends State<Navigasigrafik> with SingleTickerProviderStateMixin{
+  
+  TabController controller;
+
+  @override
+  void initState() {
+    controller = new TabController(vsync: this, length: 2);
+    super.initState();
+  }
+
+    @override
+  void dispose(){
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return new Scaffold(
+      body: new TabBarView(
+        controller: controller,
+        children: <Widget>[
+          new gaf.MyHomePagee(),
+          new gbaf.MyHomePage(),
+        ],
+      ),
+
+      // bottomNavigationBar: new BottomNavigationBar(
+      //   onTap: (index){
+          
+      //   },
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.check,
+      //       ),
+      //       title: Text("Sudah Ada Foto")
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.clear,
+      //       ),
+      //       title: Text("Belum Ada Foto"),
+      //     )
+      //   ],
+      // ),
+      bottomNavigationBar: new Material(
+        color: Colors.transparent,
+        child: new TabBar(
+          controller: controller,
+          tabs: <Widget>[
+            
+            
+            new Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new Tab(
+                  icon: new Icon(
+                    Icons.check,
+                    color: Colors.black
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.all(5.0),
+                  child: new Text(
+                    "            Ada Foto",
+                    style: new TextStyle(
+                      fontSize: 15.0,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.blue[900],
+                    )
+                  )
+                )
+              ],
+            ),
+            new Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new Tab(
+                  icon: new Icon(
+                    Icons.clear,
+                    color: Colors.black,
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.all(5.0),
+                  child: new Text(
+                    "     Belum Ada Foto",
+                    style: new TextStyle(
+                      fontSize: 15.0,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.blue[900],
+                    )
+                  )
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

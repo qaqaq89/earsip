@@ -1,0 +1,155 @@
+class Useradmin{
+  String no;
+  String upbjj;
+  String username;
+  String password;
+  String status;
+
+  Useradmin(
+    {
+      this.no, 
+      this.upbjj, 
+      this.username, 
+      this.password, 
+      this.status,
+    }
+  );
+
+  static List<Useradmin> getUser(){
+    return <Useradmin>[
+      Useradmin(
+        no: "1",
+        upbjj: "Jakarta",
+        username: "utjkt",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "2",
+        upbjj: "Bogor",
+        username: "utbgr",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+      Useradmin(
+        no: "3",
+        upbjj: "Subang",
+        username: "utsbng",
+        password: "masiharray",
+        status: "aktif"
+      ),
+    ];
+  }
+}

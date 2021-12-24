@@ -1,0 +1,585 @@
+import 'package:flutter/material.dart';
+import 'cobakoneksi2.dart';
+import 'cobakoneksi2service.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class Tabel extends StatefulWidget {
+
+  Tabel() : super();
+  @override
+  _TabelState createState() => _TabelState();
+}
+
+class _TabelState extends State<Tabel> {
+
+  
+  // GlobalKey<ScaffoldState> _scaffoldKey;
+  Arsip _selectedArsip;
+
+  ApiService apiService;
+
+  @override
+  void initState(){
+    super.initState();
+    ApiService();
+    // _scaffoldKey = GlobalKey();
+    apiService = ApiService();
+    
+  }
+
+
+  // Widget _dataBody(List<Arsip> arsips){
+  //   return ListView.builder(
+  //     itemBuilder: (context, index){
+  //       // Arsip arsip = arsips[index];
+  //       return DataTable(
+  //         columns: [
+  //           DataColumn(
+  //             label: new Text("Nama"),
+  //             numeric: false,
+  //             tooltip: "Nama",
+  //           ),
+  //         ], 
+  //         rows: arsips.map((arsip) => DataRow(
+  //           cells: [
+  //             DataCell(
+  //               Text(
+  //                 arsip.nama
+  //               )
+  //             )
+  //           ]
+  //         )).toList()
+  //       );
+  //     },
+  //     itemCount: arsips.length,
+  //   );
+  // }
+
+  SingleChildScrollView _dataBody(List<Arsip> arsips){
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columns: [
+            DataColumn(
+          label: new Text("Batch"),
+          numeric: false,
+          tooltip: "Batch",
+        ),
+        DataColumn(
+          label: new Text("NIM"),
+          numeric: false,
+          tooltip: "NIM",
+        ),
+        DataColumn(
+          label: new Text("Nama"),
+          numeric: false,
+          tooltip: "Nama",
+        ),
+        DataColumn(
+          label: new Text("Program Studi"),
+          numeric: false,
+          tooltip: "Program Studi",
+        ),
+        DataColumn(
+          label: new Text("UPBJJ-UT"),
+          numeric: false,
+          tooltip: "UPBJJ-UT",
+        ),
+        DataColumn(
+          label: new Text("Yudisium"),
+          numeric: false,
+          tooltip: "Yudisium",
+        ),
+        DataColumn(
+          label: new Text("Status Foto"),
+          numeric: false,
+          tooltip: "Status Foto",
+        ),
+        DataColumn(
+          label: new Text("Status Ijazah"),
+          numeric: false,
+          tooltip: "Status Ijazah",
+        ),
+        DataColumn(
+          label: new Text("Tanggal Kirim"),
+          numeric: false,
+          tooltip: "Tanggal Kirim",
+        ),
+        DataColumn(
+          label: new Text("Edit"),
+          numeric: false,
+          tooltip: "Edit",
+        ),
+        DataColumn(
+          label: new Text("Hapus"),
+          numeric: false,
+          tooltip: "Hapus",
+        ),
+          ],
+          rows: arsips?.map((arsip) => DataRow(
+            cells: [
+              DataCell(
+                Text(arsip.batch??'-')
+              ),
+              DataCell(
+                Text(arsip.nim.toString()??'-')
+              ),
+              DataCell(
+                Text(arsip.nama??'-')
+              ),
+              DataCell(
+                Text(arsip.prodi??'-')
+              ),
+              DataCell(
+                Text(arsip.upbjj??'-')
+              ),
+              DataCell(
+                Text(arsip.yudisium.toString()??'-')
+              ),
+              DataCell(
+                Text(arsip.foto??'-')
+              ),
+              DataCell(
+                Text(arsip.kelengkapan??'-')
+              ),
+              DataCell(
+                Text(arsip.kirim??'-')
+              ),
+              DataCell(
+                IconButton(
+                  icon: Icon(Icons.edit), 
+                  onPressed: (){}
+                )
+              ),
+              DataCell(
+                IconButton(
+                  icon: Icon(Icons.delete), 
+                  onPressed: (){}
+                )
+              ),
+            ]
+          ))?.toList() ?? []
+        ),
+      ),
+    );
+  }
+
+  // Widget _dataBody(List<Arsip> arsips){
+  //   DataTable _dataBody(){
+  //     ListView.builder(
+  //       itemBuilder: (context, index){
+  //         Arsip arsip = arsips[index];
+  //         return DataTable(
+  //           columns: [
+  //             DataColumn(
+  //               label: new Text("Nama"),
+  //               numeric: false,
+  //               tooltip: "Nama",
+  //             ),
+  //           ], 
+  //           rows: arsips.map((Arsip arsip) => DataRow(
+  //             cells: [
+  //               DataCell(
+  //                 Text(arsip.nama)
+  //               )
+  //             ]
+  //           )).toList()
+  //         );
+  //       },
+  //       itemCount: arsips.length,
+  //     );
+  //   }
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.grey,
+        title: new Container(
+          child: Row(
+            children: <Widget>[
+              new Container(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Image.asset("img/UTpng.png",
+                  width: 60.0,
+                  height: 60.0,
+                  ),
+                ),
+              ),
+              new Text("Daftar Arsip Ijazah",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontStyle: FontStyle.italic,
+                color: Colors.blue[900],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          new SafeArea(
+            child: new Column(
+              children: <Widget>[
+                new Container(
+                  padding: new EdgeInsets.all(10.0),
+                  child: new Column(
+                    children: <Widget>[
+                      new Text(
+                        "Daftar Arsip Ijazah Mahasiswa",
+                        style: GoogleFonts.pacifico(
+                          fontSize: 20.0,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      new Padding(
+                        padding: new EdgeInsets.only(
+                          top: 20.0
+                        ),
+                      ),
+                      new TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          labelText: "Search",
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(20.0),
+                          )
+                        ),
+                      ),
+                      new Padding(
+                        padding: new EdgeInsets.only(
+                          top: 5.0
+                        ),
+                      ),
+                      new Column(
+                        children: <Widget>[
+                          new Padding(
+                            padding: new EdgeInsets.all(0.0),
+                            child: new ListView(
+                              shrinkWrap: true,
+                              children: <Widget>[
+                                new MaterialButton(
+                                  color: Colors.grey[300],
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                  onPressed: (){
+                                    FutureBuilder(
+                                      future: apiService.getArsip(),
+                                      builder: (BuildContext context, AsyncSnapshot<List<Arsip>> snapshot){
+                                        if (snapshot.hasError){
+                                          return Center(
+                                            child: Text(
+                                              "Ada yang Error: ${snapshot.error.toString()}"
+                                            ),
+                                          );
+                                        }else if (snapshot.connectionState == ConnectionState.done) {
+                                          List<Arsip> arsips = snapshot.data;
+                                          return SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: _dataBody(arsips),
+                                          );
+                                        }else{
+                                          return Center(
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        }
+                                      }
+                                    );
+                                  },
+                                  child: new Row(
+                                    children: <Widget>[
+                                      new Container(
+                                        padding: const EdgeInsets.only(top: 5, bottom: 5, left: 145, right: 75),
+                                        alignment: Alignment.bottomCenter,
+                                        child: new Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text('Search', style: null, textAlign: TextAlign.center),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                FutureBuilder(
+                    future: apiService.getArsip(),
+                    builder: (BuildContext context, AsyncSnapshot<List<Arsip>> snapshot){
+                      if (snapshot.hasError){
+                        return Center(
+                          child: Text(
+                            "Ada yang Error: ${snapshot.error.toString()}"
+                          ),
+                        );
+                      }else if (snapshot.connectionState == ConnectionState.done) {
+                        List<Arsip> arsips = snapshot.data;
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: _dataBody(arsips),
+                        );
+                      }else{
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }
+                  )
+
+                ////--Percobaan 1--////
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: FutureBuilder(
+                //     future: apiService.getArsip(),
+                //     builder: (BuildContext context, AsyncSnapshot<List<Arsip>> snapshot){
+                //       if (snapshot.hasError){
+                //         return Center(
+                //           child: Text(
+                //             "Ada yang Error: ${snapshot.error.toString()}"
+                //           ),
+                //         );
+                //       }else if (snapshot.connectionState == ConnectionState.done) {
+                //         List<Arsip> arsips = snapshot.data;
+                //         return Container(
+                //           child: _dataBody(arsips),
+                //         );
+                //       }else{
+                //         return Center(
+                //           child: CircularProgressIndicator(),
+                //         );
+                //       }
+                //     }
+                //   )
+                // )
+
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+////--Percobaan 0--////
+// // import 'dart:js';
+
+// import 'package:earsip2/admin/tabelcobakoneksi2.dart';
+// import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import './tabelcobakoneksiservice.dart';
+
+// class Cobatabelkoneksi extends StatefulWidget{
+
+//   Cobatabelkoneksi() : super();
+
+//   @override
+//   _Cobatabelkoneksi createState() => _Cobatabelkoneksi();
+// }
+
+// class _Cobatabelkoneksi extends State <Cobatabelkoneksi> {
+  
+  
+//   TabelcobakoneksiService apiService;
+//   List<Arsipp> users;
+//   @override
+//   void initState(){
+//     super.initState();
+//     apiService = TabelcobakoneksiService();
+    
+//   }
+//   DataTable dataBody(){
+//     FutureBuilder<Arsipp>(
+//         future: TabelcobakoneksiService.getArsipp(),
+//         builder: (BuildContext context, AsyncSnapshot snapshot){
+//           Arsipp arsipp = snapshot.data;
+//           bool connect = snapshot.connectionState == ConnectionState.done;
+//           if (snapshot.hasData && connect){
+//             return ListView.builder(
+//               itemCount: arsipp.data.length,
+//               itemBuilder: (BuildContext context, int index){
+//                 return DataTable(
+//                   columns: [
+//                     DataColumn(
+//                       label: Text("Nama"),
+//                       numeric: false,
+//                       tooltip: "Nama",
+//                     )
+//                   ], 
+//                   rows: users.map((TabelcobakoneksiService) => DataRow(
+//                     cells: [
+//                       DataCell(
+//                         Text(
+//                           TabelcobakoneksiService.data[index].nama
+//                         )
+//                         // nama: arsipp.data[index].nama,
+//                       )
+//                     ]
+//                     )
+//                   ).toList(),
+//                 );
+//               }
+//             );
+//           }
+//         }
+//       );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         backgroundColor: Colors.grey,
+//         title: new Container(
+//           child: Row(
+//             children: <Widget>[
+//               new Container(
+//                 child: Align(
+//                   alignment: Alignment.centerLeft,
+//                   child: Image.asset("img/UTpng.png",
+//                   width: 60.0,
+//                   height: 60.0,
+//                   ),
+//                 ),
+//               ),
+//               new Text("Daftar Arsip Ijazah",
+//               style: TextStyle(
+//                 fontSize: 20.0,
+//                 fontStyle: FontStyle.italic,
+//                 color: Colors.blue[900],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//       body: ListView(
+//         children: <Widget>[
+//           new SafeArea(
+//             child: new Column(
+//               children: <Widget>[
+//                 new Container(
+//                   padding: new EdgeInsets.all(10.0),
+//                   child: new Column(
+//                     children: <Widget>[
+//                       new Text(
+//                         "Daftar Arsip Ijazah Mahasiswa",
+//                         style: GoogleFonts.pacifico(
+//                           fontSize: 20.0,
+//                           fontStyle: FontStyle.italic,
+//                           fontWeight: FontWeight.bold
+//                         ),
+//                       ),
+//                       new Padding(
+//                         padding: new EdgeInsets.only(
+//                           top: 20.0
+//                         ),
+//                       ),
+//                       new TextField(
+//                         decoration: InputDecoration(
+//                           hintText: "Search",
+//                           labelText: "Search",
+//                           border: new OutlineInputBorder(
+//                             borderRadius: new BorderRadius.circular(20.0),
+//                           )
+//                         ),
+//                       ),
+//                       new Padding(
+//                         padding: new EdgeInsets.only(
+//                           top: 5.0
+//                         ),
+//                       ),
+//                       new Column(
+//                         children: <Widget>[
+//                           new Padding(
+//                             padding: new EdgeInsets.all(0.0),
+//                             child: new ListView(
+//                               shrinkWrap: true,
+//                               children: <Widget>[
+//                                 new MaterialButton(
+//                                   color: Colors.grey[300],
+//                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+//                                   onPressed: (){
+//                                     // Navigator.push(context, MaterialPageRoute(builder: (context){
+//                                     //   return tabaks.Ata();
+//                                     // }));
+//                                   },
+//                                   child: new Row(
+//                                     children: <Widget>[
+//                                       new Container(
+//                                         padding: const EdgeInsets.only(top: 5, bottom: 5, left: 145, right: 75),
+//                                         alignment: Alignment.bottomCenter,
+//                                         child: new Column(
+//                                           mainAxisAlignment: MainAxisAlignment.center,
+//                                           children: <Widget>[
+//                                             Text('Search', style: null, textAlign: TextAlign.center),
+//                                           ],
+//                                         ),
+//                                       ),
+//                                     ],
+//                                   ),
+//                                 ),
+//                               ]
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 SingleChildScrollView(
+//                   scrollDirection: Axis.horizontal,
+//                   child: dataBody(),
+//                 )
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+//   // Widget build(BuildContext context){
+
+//   // }
+//   // Widget _buildTableView(List<Arsip> arsips){
+//   //   return ListView.builder(
+//   //     itemBuilder: (context, index){
+//   //       Arsip arsip = arsips[index];
+//   //       return SafeArea(
+//   //         child: Column(
+//   //           children: <Widget>[
+//   //             Container(
+//   //               padding: new EdgeInsets.all(10.0),
+//   //               child: Column(
+//   //                 children: <Widget>[
+//   //                   Text(
+//   //                     "Daftar Arsip Ijazah Mahasiswa",
+//   //                     style: GoogleFonts.pacifico(
+//   //                         fontSize: 20.0,
+//   //                         fontStyle: FontStyle.italic,
+//   //                         fontWeight: FontWeight.bold
+//   //                     ),
+//   //                   )
+//   //                 ],
+//   //               ),
+//   //             )
+//   //           ],
+//   //         )
+//   //       );
+//   //     }
+//   //   );
+//   // }
+// }

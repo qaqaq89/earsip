@@ -1,0 +1,34 @@
+// import 'package:earsip2/admin/cobakoneksi2.dart';
+// import 'package:earsip2/admin/cobakoneksi2service.dart';
+import 'package:earsip2/admin/tabelcobakoneksi2.dart.bak';
+import 'package:http/http.dart';
+
+class TabelcobakoneksiService {
+
+  static const String baseUrl = "http://192.168.100.7";
+  // Client client = Client();
+
+  static Future<Arsipp> getArsipp() async {
+    Response response = await get("$baseUrl/api/arsip");
+
+      return arsipsFromJson(response.body);
+ 
+  }
+}
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
+// import './tabelcobakoneksi2.dart';
+
+// class Service{
+//   static const ROOT = 'http:/192.168.100.7/api/arsip';
+//   static const _CREATE_TABLE_ACTION = 'CREATE_TABLE';
+//   static const _GET_ALL_ACTION = 'GET_ALL';
+
+//   static Future<String> createTable() async{
+//     try{
+//       var map = Map<String, dynamic>();
+//       map['action'] = _CREATE_TABLE_ACTION;
+//       final response = await http.post(ROOT, body: map);
+//     }
+//   }
+// }

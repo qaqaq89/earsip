@@ -1,0 +1,152 @@
+class UserDai{
+  String no;
+  String nim;
+  String nama;
+  String batch;
+  String prodi;
+  String upbjj;
+  String yudisium;
+  String kelengkapan;
+  String foto;
+  String tglkirim;
+
+  UserDai(
+    {
+      this.no, 
+      this.nim,
+      this.nama, 
+      this.batch,
+      this.prodi,
+      this.upbjj,
+      this.yudisium, 
+      this.kelengkapan,
+      this.foto, 
+      this.tglkirim,
+    }
+  );
+
+  static List<UserDai> getUser(){
+    return <UserDai>[
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+      UserDai(
+        no: "1",
+        nim: "123456789",
+        nama: "Yuni",
+        batch: "3A",
+        prodi: "Saintek",
+        upbjj: "Surabaya",
+        yudisium: "9",
+        kelengkapan: "Ijazah",
+        foto: "Belum",
+        tglkirim: "26 Agustus 2020",
+      ),
+    ];
+  }
+}
